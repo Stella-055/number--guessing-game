@@ -11,6 +11,7 @@ body {
   display: flex;
   height: 100vh;
   background-color: whitesmoke;
+  color: rgb(0, 132, 255);
 }
 .App {
   display: flex;

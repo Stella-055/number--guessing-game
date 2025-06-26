@@ -78,14 +78,17 @@ function App() {
             feedback: "Your guess is too low!",
             message: `You have ${state.numberoftrials} chances left`,
           };
+        }else{
+          return {
+            ...state,
+            feedback: "Please enter a valid number!",
+            message: `You have ${state.numberoftrials} chances left`,
+          };
         }
 
       default:
-        return {
-          ...state,
-          feedback: "Please enter a valid number!",
-          message: `You have ${state.numberoftrials} chances left`,
-        };
+        return state;
+        
     }
   }
   return (
