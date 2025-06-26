@@ -9,12 +9,13 @@ function getrandomNumber() : number {
 
 function App() {
   type playingstate = {
-    startbutton: string;
+    startbutton: boolean;
     guessbutton: boolean;
     input: number;
     feedback: string | null;
     message: string;
-   
+   inputstatedisabled: boolean;
+   secretnumber?: number;
   };
 
   type actionType = { type: string
@@ -23,11 +24,12 @@ function App() {
    
   const initialState: playingstate = 
   {
-    startbutton: "",
+    startbutton: false,
     guessbutton: true,
     input: 2,
     feedback: null,
     message: "Welcome Player Guess a number between 1 and 100",
+    inputstatedisabled: true,
    
   }
   const [state, dispatch] = useReducer(reducerFunction, initialState);
@@ -36,7 +38,7 @@ function reducerFunction(state: playingstate, action: actionType) {
 
   switch (action.type) {
     case "START":
-      return { ...state, startbutton: "PLAYING", message: "10 chances left" , guessbutton: false};
+      return { ...state, startbutton: true, message: "10 chances left" , guessbutton: false,inputstatedisabled: false ,secretnumber: getrandomNumber()};
     case "GUESS":
      
     default:
@@ -47,19 +49,19 @@ function reducerFunction(state: playingstate, action: actionType) {
   return (
     <div className="App">
     <div className='navdiv'>
- <Button variant="contained" size='large' endIcon={<IoMdPlayCircle />} onClick={() => dispatch({ type: "START"})}>
+ <Button variant="contained" size='large' endIcon={<IoMdPlayCircle />} disabled={ state.startbutton} onClick={() => dispatch({ type: "START"})}>
   PLAY
 </Button>
       
 </div>
 <div className='maindiv'>
 <h1>{state.message}</h1>
-<input type="number"  />
+<input type="number" readOnly={state.inputstatedisabled} />
 {state.feedback && <h2>{state.feedback}</h2>}
 
-<button  className='guessbutton' disabled= {state.guessbutton} >
+<Button  variant='outlined' disabled= {state.guessbutton}onClick={() => dispatch({ type: "GUESS"})} >
 Guess
-</button>
+</Button>
 
 </div>
     </div>

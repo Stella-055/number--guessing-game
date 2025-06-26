@@ -59,7 +59,7 @@ height: 100vh;
   outline: none;
   
 }
-.maindiv input:disabled {
+.maindiv input:read-only{
   background-color: #f0f0f0;
   cursor: not-allowed;
 }
@@ -68,17 +68,4 @@ height: 100vh;
   margin-bottom: 1rem;
   
 }
-.guessbutton {
- 
-  padding: .5rem 1rem;
-  font-weight: 700;
- outline: rgb(1, 131, 218) solid 1px;
-  color:rgb(1, 131, 218) ;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.guessbutton:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
+
