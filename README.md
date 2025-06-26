@@ -1,3 +1,8 @@
+# UseReducer Hook To handle state
+
+![Screenshot From 2025-06-26 20-41-46](https://github.com/user-attachments/assets/ac965b2a-c443-4cf6-91a6-c099dac47ead)
+
+## Live site https://whatsthedigit.netlify.app/
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
