@@ -1,20 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap");
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
 body {
-
-  font-family:"Bitcount Grid Double", sans-serif;
+  font-family: "Bitcount Grid Double", sans-serif;
   justify-content: center;
   align-items: center;
   display: flex;
-height: 100vh;
- background-color: whitesmoke;
+  height: 100vh;
+  background-color: whitesmoke;
 }
-.App{
+.App {
   display: flex;
   width: 30rem;
   flex-direction: column;
@@ -27,12 +25,10 @@ height: 100vh;
 .navdiv {
   display: flex;
 
- width: 100%;
+  width: 100%;
   justify-content: flex-end;
-
-
 }
-.maindiv{
+.maindiv {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +41,7 @@ height: 100vh;
   text-align: center;
 }
 .maindiv input {
- padding: 1rem;
+  padding: 1rem;
   font-size: 2.5rem;
   margin-bottom: 1rem;
   width: 15rem;
@@ -57,15 +53,12 @@ height: 100vh;
 }
 .maindiv input:focus {
   outline: none;
-  
 }
-.maindiv input:read-only{
+.maindiv input:read-only {
   background-color: #f0f0f0;
   cursor: not-allowed;
 }
-.maindiv h2{
+.maindiv h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  
 }
-
