@@ -39,37 +39,42 @@ function reducerFunction(state:playingstate, action:actionType) {
  
   switch (action.type) {
     case "START":
-      return { ...state, startbutton: true, message: "10 chances left" , guessbutton: false,inputstatedisabled: false ,secretnumber: getrandomNumber(), numberoftrials: 10};
+      return { ...state, startbutton: true, message: "10 chances left" , guessbutton: false,inputstatedisabled: false ,secretnumber: getrandomNumber(), numberoftrials: 10, feedback: null };
+   
     case "GUESS":
       state = { ...state, numberoftrials: state.numberoftrials - 1 };
-      if( state.numberoftrials ==0) {
-        return { ...state, feedback: `${state.numberoftrials} chances left! Please start a new game.`, guessbutton: true, inputstatedisabled: true, message: `Your score is ${state.numberoftrials *100}%` };
+      if( state.numberoftrials <= 0) {
+        return { ...state, message: `${state.numberoftrials} chances left! Please start a new game.`, guessbutton: true, inputstatedisabled: true, startbutton:false, feedback: `Your score is ${state.numberoftrials *10}%` };
       }
       else if(state.secretnumber === action.payload) {
-        return { ...state, feedback: ` ${state.numberoftrials} Chances left.Congratulations! You guessed the number!`, guessbutton: true, inputstatedisabled: true, message: ` Your score is ${state.numberoftrials }%`};}
+        return { ...state, message: ` ${state.numberoftrials} Chances left.Congratulations! You guessed the number!`, guessbutton: true, inputstatedisabled: true, startbutton:false, feedback: ` Your score is ${state.numberoftrials *10 }%`};}
     else if ( action.payload && state.secretnumber <= action.payload) {
     return { ...state, feedback: "Your guess is too high!",  message: `You have ${state.numberoftrials} chances left` };
         }
-        else if (action.payload && state.secretnumber >= action.payload) {
+      else if (action.payload && state.secretnumber >= action.payload) {
           return { ...state, feedback: "Your guess is too low!", message: `You have ${state.numberoftrials} chances left` };
         }
+       
      
     default:
-      return state;
+      return { ...state, feedback: "Please enter a valid number!", message: `You have ${state.numberoftrials} chances left` };
   }
 
 }
   return (
     <div className="App">
     <div className='navdiv'>
- <Button variant="contained" size='large' endIcon={<IoMdPlayCircle />} disabled={ state.startbutton} onClick={() => dispatch({ type: "START"})}>
+ <Button variant="contained" size='large' endIcon={<IoMdPlayCircle />} disabled={ state.startbutton} onClick={() => { setPlayerguess(null);
+  dispatch({ type: "START"})}}>
   PLAY
 </Button>
       
 </div>
 <div className='maindiv'>
 <h1>{state.message}</h1>
-<input type="number" readOnly={state.inputstatedisabled} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{
+<input type="number" readOnly={state.inputstatedisabled}
+value={playerguess || ""}
+placeholder= "0"onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{
   setPlayerguess(Number(e.target.value));
 }} />
 {state.feedback && <h2>{state.feedback}</h2>}
